@@ -1,9 +1,10 @@
+
 -- MM2 by KSANEX
 -- Loader v2.1
 
-local URL = "ВСТАВЬ_RAW_ССЫЛКУ_MAIN_LUA"
+local URL = "ВСТАВЬ_СЮДА_RAW_ССЫЛКУ_MAIN_LUA"
 
-local success, result = pcall(function()
+local success, source = pcall(function()
     return game:HttpGet(URL)
 end)
 
@@ -12,20 +13,20 @@ if not success then
     return
 end
 
-if type(result) ~= "string" or #result == 0 then
+if type(source) ~= "string" or #source == 0 then
     warn("[KSANEX] Empty script")
     return
 end
 
-local compile, script = pcall(loadstring, result)
+local compileSuccess, chunk = pcall(loadstring, source)
 
-if not compile or not script then
-    warn("[KSANEX] Compile failed")
+if not compileSuccess or type(chunk) ~= "function" then
+    warn("[KSANEX] Compilation failed")
     return
 end
 
-local executed, err = pcall(script)
+local runSuccess, err = pcall(chunk)
 
-if not executed then
-    warn("[KSANEX] Execution error:", err)
+if not runSuccess then
+    warn("[KSANEX] Error:", err)
 end
