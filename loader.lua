@@ -2,7 +2,7 @@
 -- MM2 by KSANEX
 -- Loader v2.1
 
-local URL = "ВСТАВЬ_СЮДА_RAW_ССЫЛКУ_MAIN_LUA"
+local URL = "https://raw.githubusercontent.com/ksanexrbx-sys/MM2-by-KSANEX-/refs/heads/main/main.lua"
 
 local success, source = pcall(function()
     return game:HttpGet(URL)
